@@ -1,4 +1,6 @@
-﻿  Game.cpp
+﻿  Entity.cpp
+  Game.cpp
+  GameState.cpp
   main.cpp
   State.cpp
   Generating Code...
