@@ -23,14 +23,39 @@ void Game::initWindow()
 		ifs >> vertical_sync_enable;
 	}
 
+	ifs.close();
+
 	this->window = new sf::RenderWindow(window_bounds, title);
 	this->window->setFramerateLimit(framerate_limit);
 	this->window->setVerticalSyncEnabled(vertical_sync_enable);
 }
 
+void Game::initKeys()
+{
+	std::ifstream ifs("Config/supported_keys.ini");
+
+	if (ifs.is_open())
+	{
+		std::string key = "";
+		int key_value = 0;
+
+		while (ifs >> key >> key_value)
+		{
+			this->supportedKeys[key] = key_value;
+		}
+	}
+
+	ifs.close();
+
+	for (auto i : this->supportedKeys)
+	{
+		std::cout << i.first << " " << i.second << "\n";
+	}
+}
+
 void Game::initStates()
 {
-	this->states.push(new GameState(this->window));
+	this->states.push(new MainMenuState(this->window, &this->supportedKeys));
 }
 
 //Constructors/Destructors
@@ -38,6 +63,7 @@ void Game::initStates()
 Game::Game()
 {
 	this->initWindow();
+	this->initKeys();
 	this->initStates();
 }
 
