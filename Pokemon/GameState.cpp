@@ -30,7 +30,7 @@ void GameState::initTexture()
 
 void GameState::initPlayer()
 {
-	this->player = new Player(0, 0, &this->textures["PLAYER_IDLE"]);
+	this->player = new Player(0, 0, this->textures["PLAYER_IDLE"]);
 }
 
 // Constructors / Destructors
@@ -55,13 +55,13 @@ void GameState::updateInput(const float& dt)
 	// Update player input
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP"))))
-		this->player->move(dt, 0.f, -1.f);
+		this->player->move(0.f, -1.f, dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
-		this->player->move(dt, -1.f, 0.f);
+		this->player->move(-1.f, 0.f, dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
-		this->player->move(dt, 0.f, 1.f);
+		this->player->move(0.f, 1.f, dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
-		this->player->move(dt, 1.f, 0.f);
+		this->player->move(1.f, 0.f, dt);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))))
 		this->endState();

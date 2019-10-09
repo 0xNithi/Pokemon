@@ -52,27 +52,47 @@ void MainMenuState::initKeybinds()
 void MainMenuState::initButton()
 {
 	this->buttons["GAME_STATE"] = new Button(
-		825, 480, 300, 75,
-		&this->font, "New Game",
+		775, 480, 400, 75,
+		&this->font, "New Game", 50,
 		sf::Color(70, 70, 70, 200),
-		sf::Color(150, 150, 150, 255),
-		sf::Color(20, 20, 20, 200)
+		sf::Color(40, 40, 40, 250),
+		sf::Color(20, 20, 20, 50),
+		sf::Color(255, 167, 28, 200),
+		sf::Color(255, 167, 28, 255),
+		sf::Color(255, 167, 28, 200)
 	);
 
 	this->buttons["SETTINGS"] = new Button(
-		825, 580, 300, 75,
-		&this->font, "Settings",
+		775, 580, 400, 75,
+		&this->font, "Settings", 50,
 		sf::Color(70, 70, 70, 200),
-		sf::Color(150, 150, 150, 255),
-		sf::Color(20, 20, 20, 200)
+		sf::Color(40, 40, 40, 250),
+		sf::Color(20, 20, 20, 50),
+		sf::Color(255, 167, 28, 200),
+		sf::Color(255, 167, 28, 255),
+		sf::Color(255, 167, 28, 200)
+	);
+
+	this->buttons["EDITOR_STATE"] = new Button(
+		775, 680, 400, 75,
+		&this->font, "Editor", 50,
+		sf::Color(70, 70, 70, 200),
+		sf::Color(40, 40, 40, 250),
+		sf::Color(20, 20, 20, 50),
+		sf::Color(255, 167, 28, 200),
+		sf::Color(255, 167, 28, 255),
+		sf::Color(255, 167, 28, 200)
 	);
 
 	this->buttons["EXIT_STATE"] = new Button(
-		825, 780, 300, 75,
-		&this->font, "Quit",
-		sf::Color(100, 100, 100, 200),
-		sf::Color(150, 150, 150, 255),
-		sf::Color(20, 20, 20, 200)
+		775, 880, 400, 75,
+		&this->font, "Quit", 50,
+		sf::Color(70, 70, 70, 200),
+		sf::Color(40, 40, 40, 250),
+		sf::Color(20, 20, 20, 50),
+		sf::Color(255, 167, 28, 200),
+		sf::Color(255, 167, 28, 255),
+		sf::Color(255, 167, 28, 200)
 	);
 }
 

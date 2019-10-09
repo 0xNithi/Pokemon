@@ -1,10 +1,2 @@
-﻿  Entity.cpp
-  Game.cpp
-  GameState.cpp
-  main.cpp
-  MainMenuState.cpp
-  MovementComponent.cpp
-  Player.cpp
-  State.cpp
-  Generating Code...
+﻿  MainMenuState.cpp
   Pokemon.vcxproj -> D:\SFML Games\Debug\Pokemon.exe
