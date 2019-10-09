@@ -1,26 +1,10 @@
-﻿  Button.cpp
+﻿  Entity.cpp
   Game.cpp
   GameState.cpp
   main.cpp
   MainMenuState.cpp
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,78): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,78): warning C4244:         with
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,78): warning C4244:         [
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,78): warning C4244:             T=unsigned int
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,78): warning C4244:         ]
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,78): warning C4244:         and
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,78): warning C4244:         [
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,78): warning C4244:             T=float
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,78): warning C4244:         ]
+  MovementComponent.cpp
+  Player.cpp
   State.cpp
   Generating Code...
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,57): warning C4244:  'argument': conversion from 'T' to 'T', possible loss of data
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,57): warning C4244:         with
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,57): warning C4244:         [
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,57): warning C4244:             T=unsigned int
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,57): warning C4244:         ]
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,57): warning C4244:         and
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,57): warning C4244:         [
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,57): warning C4244:             T=float
-D:\SFML Games\Pokemon\MainMenuState.cpp(26,57): warning C4244:         ]
   Pokemon.vcxproj -> D:\SFML Games\Debug\Pokemon.exe

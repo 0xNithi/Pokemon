@@ -6,10 +6,14 @@
 class Game
 {
 private:
+
 	// Variables
 
 	sf::RenderWindow *window;
 	sf::Event sfEvent;
+	std::vector<sf::VideoMode> videoMode;
+	sf::ContextSettings windowSettings;
+	bool fullscreen;
 
 	sf::Clock dtClock;
 	float dt;
@@ -20,11 +24,13 @@ private:
 
 	// Initializer functions
 
+	void initVariables();
 	void initWindow();
 	void initKeys();
 	void initStates();
 
 public:
+
 	//Constructors/Destructors
 
 	Game();
