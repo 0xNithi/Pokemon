@@ -41,6 +41,7 @@ private:
 
 			this->sprite.setTexture(this->textureSheet, true);
 			this->sprite.setTextureRect(this->startRect);
+			this->sprite.setScale(1.5f, 1.5f);
 		}
 
 		// Functions
@@ -60,11 +61,11 @@ private:
 
 				if (this->currentRect != this->endRect)
 				{
-					this->currentRect.left += this->width;
+					this->currentRect.top += this->height;
 				}
 				else // Reset
 				{
-					this->currentRect.left = this->startRect.left;
+					this->currentRect.top = this->startRect.top;
 				}
 
 				this->sprite.setTextureRect(this->currentRect);
@@ -81,6 +82,7 @@ private:
 	sf::Sprite& sprite;
 	sf::Texture& textureSheet;
 	std::map<std::string, Animation*> animations;
+	Animation* lastAnimation;
 
 public:
 	AnimationComponent(sf::Sprite& sprite, sf::Texture& texture_sheet);

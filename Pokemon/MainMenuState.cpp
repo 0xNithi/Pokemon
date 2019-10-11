@@ -134,6 +134,15 @@ void MainMenuState::updateButtons()
 		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
 	}
 
+	// Settings
+
+	// Editor
+
+	if (this->buttons["EDITOR_STATE"]->isPressed())
+	{
+		this->states->push(new EditorState(this->window, this->supportedKeys, this->states));
+	}
+
 	// Quit the game
 
 	if (this->buttons["EXIT_STATE"]->isPressed())
@@ -167,14 +176,14 @@ void MainMenuState::render(sf::RenderTarget* target)
 
 	this->renderButtons(target);
 
-	sf::Text mouseText;
-	mouseText.setPosition(this->mousePosView.x, this->mousePosView.y - 50);
-	mouseText.setFont(this->font);
-	mouseText.setCharacterSize(12);
-	std::stringstream ss;
-	ss << this->mousePosView.x << " " << this->mousePosView.y;
-	mouseText.setString(ss.str());
+	//sf::Text mouseText;
+	//mouseText.setPosition(this->mousePosView.x, this->mousePosView.y - 50);
+	//mouseText.setFont(this->font);
+	//mouseText.setCharacterSize(12);
+	//std::stringstream ss;
+	//ss << this->mousePosView.x << " " << this->mousePosView.y;
+	//mouseText.setString(ss.str());
 
-	target->draw(mouseText);
+	//target->draw(mouseText);
 
 }
