@@ -2,6 +2,7 @@
 #define ENTITY_H
 
 #include "MovementComponent.h"
+#include "AnimationComponent.h"
 
 class Entity
 {
@@ -14,6 +15,7 @@ protected:
 	sf::Sprite sprite;
 
 	MovementComponent* movementComponent;
+	AnimationComponent* animationComponent;
 
 public:
 
@@ -24,6 +26,7 @@ public:
 
 	void setTexture(sf::Texture& texture);
 	void createMovementComponent(const float maxVelocity, const float acceleration, const float decelerarion);
+	void createAnimationComponent(sf::Texture& texture_sheet);
 
 	// Functions
 
