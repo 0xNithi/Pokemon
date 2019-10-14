@@ -39,7 +39,7 @@ void Game::initWindow()
 
 	this->fullscreen = fullscreen;
 	this->windowSettings.antialiasingLevel = antialiasing_level;
-	if(this->fullscreen)
+	if (this->fullscreen)
 		this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Fullscreen, windowSettings);
 	else
 		this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Titlebar | sf::Style::Close, windowSettings);

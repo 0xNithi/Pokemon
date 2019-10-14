@@ -1,2 +1,4 @@
-﻿  Player.cpp
+﻿  GameState.cpp
+  SettingsState.cpp
+  Generating Code...
   Pokemon.vcxproj -> D:\SFML Games\Debug\Pokemon.exe

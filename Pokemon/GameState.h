@@ -2,18 +2,24 @@
 #define GAMESTATE_H
 
 #include "State.h"
+#include "PauseMenu.h"
 
 class GameState :
 	public State
 {
 private:
 
+	sf::Font font;
+	PauseMenu* pmenu;
+
 	Player* player;
 
 	// Functions
 
 	void initKeybinds();
+	void initFonts();
 	void initTexture();
+	void initPauseMenu();
 	void initPlayer();
 
 public:
@@ -23,6 +29,8 @@ public:
 	// Functions
 
 	void updateInput(const float& dt);
+	void updatePlayerInput(const float& dt);
+	void updatePauseMenuButtons();
 	void update(const float& dt);
 	void render(sf::RenderTarget* target = NULL);
 };

@@ -15,7 +15,7 @@ void MainMenuState::initBackground()
 		)
 	);
 
-	if (!this->backgroundTexture.loadFromFile("Resources/Images/Backgrounds/bg1.png"))
+	if (!this->backgroundTexture.loadFromFile("Resources/Images/Backgrounds/mainmenu.png"))
 	{
 		throw "ERROR::MAINMENUSTATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
 	}
@@ -51,48 +51,32 @@ void MainMenuState::initKeybinds()
 
 void MainMenuState::initButton()
 {
-	this->buttons["GAME_STATE"] = new Button(
-		775, 480, 400, 75,
+	this->buttons["GAME_STATE"] = new gui::Button(
+		775.f, 480.f, 400.f, 75.f,
 		&this->font, "New Game", 50,
-		sf::Color(70, 70, 70, 200),
-		sf::Color(40, 40, 40, 250),
-		sf::Color(20, 20, 20, 50),
-		sf::Color(255, 167, 28, 200),
-		sf::Color(255, 167, 28, 255),
-		sf::Color(255, 167, 28, 200)
+		sf::Color(70, 70, 70, 200), sf::Color(40, 40, 40, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(255, 167, 28, 200), sf::Color(255, 167, 28, 255), sf::Color(255, 167, 28, 200)
 	);
 
-	this->buttons["SETTINGS"] = new Button(
-		775, 580, 400, 75,
+	this->buttons["SETTINGS_STATE"] = new gui::Button(
+		775.f, 580.f, 400.f, 75.f,
 		&this->font, "Settings", 50,
-		sf::Color(70, 70, 70, 200),
-		sf::Color(40, 40, 40, 250),
-		sf::Color(20, 20, 20, 50),
-		sf::Color(255, 167, 28, 200),
-		sf::Color(255, 167, 28, 255),
-		sf::Color(255, 167, 28, 200)
+		sf::Color(70, 70, 70, 200), sf::Color(40, 40, 40, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(255, 167, 28, 200), sf::Color(255, 167, 28, 255), sf::Color(255, 167, 28, 200)
 	);
 
-	this->buttons["EDITOR_STATE"] = new Button(
-		775, 680, 400, 75,
+	this->buttons["EDITOR_STATE"] = new gui::Button(
+		775.f, 680.f, 400.f, 75.f,
 		&this->font, "Editor", 50,
-		sf::Color(70, 70, 70, 200),
-		sf::Color(40, 40, 40, 250),
-		sf::Color(20, 20, 20, 50),
-		sf::Color(255, 167, 28, 200),
-		sf::Color(255, 167, 28, 255),
-		sf::Color(255, 167, 28, 200)
+		sf::Color(70, 70, 70, 200), sf::Color(40, 40, 40, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(255, 167, 28, 200), sf::Color(255, 167, 28, 255), sf::Color(255, 167, 28, 200)
 	);
 
-	this->buttons["EXIT_STATE"] = new Button(
-		775, 880, 400, 75,
+	this->buttons["EXIT_STATE"] = new gui::Button(
+		775.f, 880.f, 400.f, 75.f,
 		&this->font, "Quit", 50,
-		sf::Color(70, 70, 70, 200),
-		sf::Color(40, 40, 40, 250),
-		sf::Color(20, 20, 20, 50),
-		sf::Color(255, 167, 28, 200),
-		sf::Color(255, 167, 28, 255),
-		sf::Color(255, 167, 28, 200)
+		sf::Color(70, 70, 70, 200), sf::Color(40, 40, 40, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(255, 167, 28, 200), sf::Color(255, 167, 28, 255), sf::Color(255, 167, 28, 200)
 	);
 }
 
@@ -136,6 +120,11 @@ void MainMenuState::updateButtons()
 
 	// Settings
 
+	if (this->buttons["SETTINGS_STATE"]->isPressed())
+	{
+		this->states->push(new SettingsState(this->window, this->supportedKeys, this->states));
+	}
+
 	// Editor
 
 	if (this->buttons["EDITOR_STATE"]->isPressed())
@@ -159,7 +148,7 @@ void MainMenuState::update(const float& dt)
 	this->updateButtons();
 }
 
-void MainMenuState::renderButtons(sf::RenderTarget* target)
+void MainMenuState::renderButtons(sf::RenderTarget& target)
 {
 	for (auto& it : this->buttons)
 	{
@@ -174,7 +163,7 @@ void MainMenuState::render(sf::RenderTarget* target)
 
 	target->draw(this->background);
 
-	this->renderButtons(target);
+	this->renderButtons(*target);
 
 	//sf::Text mouseText;
 	//mouseText.setPosition(this->mousePosView.x, this->mousePosView.y - 50);

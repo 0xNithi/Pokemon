@@ -16,7 +16,7 @@
 #include "SFML/Audio.hpp"
 #include "SFML/Network.hpp"
 
-enum movement_states {IDLE = 0, MOVING , MOVING_UP, MOVING_LEFT, MOVING_DOWN, MOVING_RIGHT};
+enum movement_states {IDLE = 0, MOVING_UP, MOVING_LEFT, MOVING_DOWN, MOVING_RIGHT};
 
 class MovementComponent
 {
@@ -39,14 +39,15 @@ public:
 
 	// Accessors
 
-	const sf::Vector2f & getVelocity() const;
+	const float& getMaxVelocity() const;
+	const sf::Vector2f& getVelocity() const;
 
 	// Functions
 
 	const bool getState(const short unsigned state) const;
 
 	void move(const float x, const float y, const float& dt);
-	void update(const float & dt);
+	void update(const float& dt);
 };
 
 #endif
