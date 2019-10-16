@@ -3,6 +3,7 @@
 
 #include "State.h"
 #include "PauseMenu.h"
+#include "TileMap.h"
 
 class GameState :
 	public State
@@ -13,6 +14,8 @@ private:
 	PauseMenu* pmenu;
 
 	Player* player;
+
+	TileMap map;
 
 	// Functions
 

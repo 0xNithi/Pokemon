@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "MainMenuState.h"
 
 // Initializer functions
@@ -174,5 +175,4 @@ void MainMenuState::render(sf::RenderTarget* target)
 	//mouseText.setString(ss.str());
 
 	//target->draw(mouseText);
-
 }

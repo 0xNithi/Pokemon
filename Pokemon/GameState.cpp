@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "GameState.h"
 
 // Initializer functions
@@ -30,7 +31,7 @@ void GameState::initFonts()
 
 void GameState::initTexture()
 {
-	if (!this->textures["PLAYER_SHEET"].loadFromFile("Resources/Images/Sprites/Player/red.png"))
+	if (!this->textures["PLAYER_RED_SHEET"].loadFromFile("Resources/Images/Sprites/Player/red.png"))
 	{
 		throw "ERROR::GAME_STATE::FAILED_TO_LOAD_PLAYER_TEXTURE";
 	}
@@ -45,7 +46,7 @@ void GameState::initPauseMenu()
 
 void GameState::initPlayer()
 {
-	this->player = new Player(0, 0, this->textures["PLAYER_SHEET"]);
+	this->player = new Player(0, 0, this->textures["PLAYER_RED_SHEET"]);
 }
 
 // Constructors / Destructors
@@ -122,6 +123,8 @@ void GameState::render(sf::RenderTarget* target)
 {
 	if (!target)
 		target = this->window;
+
+	//this->map.render(*target);
 
 	this->player->render(*target);
 
