@@ -122,7 +122,7 @@ void GameState::update(const float& dt)
 	}
 	else // Paused update
 	{
-		this->pmenu->update(this->mousePosView);
+		this->pmenu->update(this->mousePosWindow);
 		this->updatePauseMenuButtons();
 	}
 }

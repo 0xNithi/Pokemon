@@ -30,13 +30,14 @@ private:
 
 	sf::RectangleShape sidebar;
 
-	sf::IntRect textureRect;
 	sf::RectangleShape selectorRect;
 
 	gui::TextureSelector* textureSelector;
 
+	sf::IntRect textureRect;
 	bool collision;
 	short type;
+	float cameraSpeed;
 
 	// Functions
 

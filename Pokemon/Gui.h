@@ -45,7 +45,7 @@ namespace gui
 
 		// Functions
 
-		void update(const sf::Vector2f& mousePos);
+		void update(const sf::Vector2i& mousePosWindow);
 		void render(sf::RenderTarget& target);
 	};
 
@@ -74,7 +74,7 @@ namespace gui
 		// Functions
 
 		void updateKeytime(const float& dt);
-		void update(const sf::Vector2f& mousePos, const float& dt);
+		void update(const sf::Vector2i& mousePosWindow, const float& dt);
 		void render(sf::RenderTarget& target);
 	};
 
