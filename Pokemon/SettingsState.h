@@ -32,7 +32,7 @@ private:
 	void initText();
 
 public:
-	SettingsState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
+	SettingsState(StateData* state_data);
 	virtual ~SettingsState();
 
 	// Accessors

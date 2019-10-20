@@ -9,11 +9,10 @@ private:
 
 	// Variables
 
+	GraphicsSettings gfxSettings;
+	StateData stateData;
 	sf::RenderWindow *window;
 	sf::Event sfEvent;
-	std::vector<sf::VideoMode> videoMode;
-	sf::ContextSettings windowSettings;
-	bool fullscreen;
 
 	sf::Clock dtClock;
 	float dt;
@@ -22,9 +21,13 @@ private:
 
 	std::map<std::string, int> supportedKeys;
 
+	float gridSize;
+
 	// Initializer functions
 
 	void initVariables();
+	void initGraphicsSettings();
+	void initStateDate();
 	void initWindow();
 	void initKeys();
 	void initStates();

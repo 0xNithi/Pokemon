@@ -49,22 +49,30 @@ void GameState::initPlayer()
 	this->player = new Player(0, 0, this->textures["PLAYER_RED_SHEET"]);
 }
 
+void GameState::initTileMap()
+{
+	this->tileMap = new TileMap(this->stateData->gridSize, 10, 10, "Resources/Images/Tiles/tilesheet.png");
+}
+
 // Constructors / Destructors
 
-GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
-	: State(window, supportedKeys, states)
+GameState::GameState(StateData* state_data)
+	: State(state_data)
 {
 	this->initKeybinds();
 	this->initFonts();
 	this->initTexture();
 	this->initPauseMenu();
+
 	this->initPlayer();
+	this->initTileMap();
 }
 
 GameState::~GameState()
 {
 	delete this->pmenu;
 	delete this->player;
+	delete this->tileMap;
 }
 
 // Functions
@@ -124,7 +132,7 @@ void GameState::render(sf::RenderTarget* target)
 	if (!target)
 		target = this->window;
 
-	//this->map.render(*target);
+	//this->tileMap->render(*target);
 
 	this->player->render(*target);
 

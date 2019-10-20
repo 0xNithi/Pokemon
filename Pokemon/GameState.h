@@ -15,7 +15,7 @@ private:
 
 	Player* player;
 
-	TileMap map;
+	TileMap* tileMap;
 
 	// Functions
 
@@ -24,9 +24,10 @@ private:
 	void initTexture();
 	void initPauseMenu();
 	void initPlayer();
+	void initTileMap();
 
 public:
-	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
+	GameState(StateData* state_data);
 	virtual ~GameState();
 
 	// Functions
