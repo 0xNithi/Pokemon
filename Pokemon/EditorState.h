@@ -18,6 +18,8 @@ private:
 
 	// Variebles
 
+	sf::View view;
+
 	sf::Font font;
 	sf::Text cursorText;
 	PauseMenu* pmenu;
@@ -39,6 +41,7 @@ private:
 	// Functions
 
 	void initVariables();
+	void initView();
 	void initBackground();
 	void initFonts();
 	void initText();

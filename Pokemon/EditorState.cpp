@@ -11,6 +11,21 @@ void EditorState::initVariables()
 	this->type = TileTypes::DEFAULT;
 }
 
+void EditorState::initView()
+{
+	this->view.setSize(
+		sf::Vector2f(
+			this->stateData->gfxSettings->resolution.width,
+			this->stateData->gfxSettings->resolution.height
+		)
+	);
+
+	this->view.setCenter(
+		this->stateData->gfxSettings->resolution.width / 2.f, 
+		this->stateData->gfxSettings->resolution.height / 2.f
+	);
+}
+
 void EditorState::initBackground()
 {
 }
@@ -95,6 +110,7 @@ EditorState::EditorState(StateData* state_data)
 	: State(state_data)
 {
 	this->initVariables();
+	this->initView();
 	this->initBackground();
 	this->initFonts();
 	this->initText();
@@ -134,6 +150,11 @@ void EditorState::updateInput(const float& dt)
 
 void EditorState::updateEditorInput(const float& dt)
 {
+	// Move view
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		this->view.move(10.f, 0.f);
+	}
 	// Add a tile to the tilemap
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getKeytime())
@@ -270,8 +291,10 @@ void EditorState::render(sf::RenderTarget* target)
 	if (!target)
 		target = this->window;
 
+	target->setView(this->view);
 	this->tileMap->render(*target);
 
+	target->setView(this->window->getDefaultView());
 	this->renderButtons(*target);
 	this->renderGui(*target);
 
