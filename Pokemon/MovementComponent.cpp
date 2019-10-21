@@ -34,6 +34,11 @@ const bool MovementComponent::getState(const short unsigned state) const
 	//		return true;
 
 	//	break;
+	case MOVING:
+		if (this->velocity.x || this->velocity.y)
+			return true;
+
+		break;
 	case MOVING_UP:
 		if (this->velocity.y < 0.f)
 			return true;

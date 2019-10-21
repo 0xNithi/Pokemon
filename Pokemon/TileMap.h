@@ -25,11 +25,11 @@ private:
 
 	// Culling
 
-	unsigned fromX;
-	unsigned toX;
-	unsigned fromY;
-	unsigned toY;
-	unsigned layer;
+	int fromX;
+	int toX;
+	int fromY;
+	int toY;
+	int layer;
 
 public:
 

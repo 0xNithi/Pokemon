@@ -57,7 +57,7 @@ void GameState::initKeybinds()
 
 void GameState::initFonts()
 {
-	if (!this->font.loadFromFile("Fonts/joystix monospace.ttf"))
+	if (!this->font.loadFromFile("Resources/Fonts/joystix monospace.ttf"))
 	{
 		throw "ERROR::MAINMENUSTATE::FAILED_TO_LOAD_FONT";
 	}
@@ -110,6 +110,8 @@ GameState::~GameState()
 	delete this->pmenu;
 	delete this->player;
 	delete this->tileMap;
+
+	this->stateData->setMusic("Resources/Audios/Music/mainmenustate.ogg");
 }
 
 // Functions
@@ -172,6 +174,7 @@ void GameState::update(const float& dt)
 		this->updatePlayerInput(dt);
 
 		this->player->update(dt);
+		this->player->updateSound(dt);
 
 		this->updateTileMap(dt);
 	}
@@ -190,7 +193,7 @@ void GameState::render(sf::RenderTarget* target)
 	this->renderTexture.clear();
 
 	this->renderTexture.setView(this->view);
-	this->tileMap->render(this->renderTexture);
+	this->tileMap->render(this->renderTexture, this->player);
 
 	this->player->render(this->renderTexture);
 

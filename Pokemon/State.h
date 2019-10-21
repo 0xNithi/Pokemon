@@ -21,6 +21,20 @@ public:
 	GraphicsSettings* gfxSettings;
 	std::map<std::string, int>* supportedKeys;
 	std::stack<State*>* states;
+
+	sf::Music music;
+
+	// Functions
+
+	void setMusic(std::string file = "Resources/Audios/Music/mainmenustate.ogg")
+	{
+		if (!this->music.openFromFile(file))
+			throw "ERROR::STATE::FAILED_TO_LOAD_MUSIC";
+
+		this->music.setVolume(10.f);
+		this->music.setLoop(1);
+		this->music.play();
+	}
 };
 
 class State

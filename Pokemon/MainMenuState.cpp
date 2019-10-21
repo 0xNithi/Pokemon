@@ -5,6 +5,7 @@
 
 void MainMenuState::initVariables()
 {
+	this->stateData->setMusic();
 }
 
 void MainMenuState::initBackground()
@@ -26,7 +27,7 @@ void MainMenuState::initBackground()
 
 void MainMenuState::initFonts()
 {
-	if (!this->font.loadFromFile("Fonts/joystix monospace.ttf"))
+	if (!this->font.loadFromFile("Resources/Fonts/joystix monospace.ttf"))
 	{
 		throw "ERROR::MAINMENUSTATE::FAILED_TO_LOAD_FONT";
 	}
@@ -117,6 +118,7 @@ void MainMenuState::updateButtons()
 	if (this->buttons["GAME_STATE"]->isPressed())
 	{
 		this->states->push(new GameState(this->stateData));
+		this->stateData->setMusic("Resources/Audios/Music/gamestate.ogg");
 	}
 
 	// Settings
@@ -165,14 +167,4 @@ void MainMenuState::render(sf::RenderTarget* target)
 	target->draw(this->background);
 
 	this->renderButtons(*target);
-
-	//sf::Text mouseText;
-	//mouseText.setPosition(this->mousePosView.x, this->mousePosView.y - 50);
-	//mouseText.setFont(this->font);
-	//mouseText.setCharacterSize(12);
-	//std::stringstream ss;
-	//ss << this->mousePosView.x << " " << this->mousePosView.y;
-	//mouseText.setString(ss.str());
-
-	//target->draw(mouseText);
 }

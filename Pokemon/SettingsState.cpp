@@ -27,7 +27,7 @@ void SettingsState::initBackground()
 
 void SettingsState::initFonts()
 {
-	if (!this->font.loadFromFile("Fonts/joystix monospace.ttf"))
+	if (!this->font.loadFromFile("Resources/Fonts/joystix monospace.ttf"))
 	{
 		throw "ERROR::MAINMENUSTATE::FAILED_TO_LOAD_FONT";
 	}
