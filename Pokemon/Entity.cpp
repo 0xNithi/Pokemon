@@ -42,19 +42,68 @@ void Entity::createAnimationComponent(sf::Texture& texture_sheet)
 	this->animationComponent = new AnimationComponent(this->sprite, texture_sheet);
 }
 
+const sf::Vector2f& Entity::getPosition() const
+{
+	if (this->hitboxComponent)
+		return this->hitboxComponent->getPosition();
+
+	return this->sprite.getPosition();
+}
+
+const sf::Vector2u Entity::getGridPosition(const unsigned gridSizeU) const
+{
+	if (this->hitboxComponent)
+		return sf::Vector2u(
+			static_cast<unsigned>(this->hitboxComponent->getPosition().x) / gridSizeU, 
+			static_cast<unsigned>(this->hitboxComponent->getPosition().y) / gridSizeU
+		);
+
+	return sf::Vector2u(
+		static_cast<unsigned>(this->sprite.getPosition().x) / gridSizeU,
+		static_cast<unsigned>(this->sprite.getPosition().y) / gridSizeU
+	);
+}
+
+const sf::FloatRect Entity::getGlobalBounds() const
+{
+	if (this->hitboxComponent)
+		return this->hitboxComponent->getGlobalBounds();
+
+	return this->sprite.getGlobalBounds();
+}
+
 // Functions
 
 void Entity::setPosition(const float x, const float y)
 {
-	this->sprite.setPosition(x, y);
+	if (this->hitboxComponent)
+		this->hitboxComponent->setPosition(x, y);
+	else
+		this->sprite.setPosition(x, y);
 }
 
 void Entity::move(const float dir_x, const float dir_y, const float& dt)
 {
 	if (movementComponent)
-	{
 		this->movementComponent->move(dir_x, dir_y, dt); // Set velocity
-	}
+}
+
+void Entity::stopVelocity()
+{
+	if (movementComponent)
+		this->movementComponent->stopVelocity();
+}
+
+void Entity::stopVelocityX()
+{
+	if (movementComponent)
+		this->movementComponent->stopVelocityX();
+}
+
+void Entity::stopVelocityY()
+{
+	if (movementComponent)
+		this->movementComponent->stopVelocityY();
 }
 
 void Entity::update(const float& dt)
@@ -63,8 +112,4 @@ void Entity::update(const float& dt)
 
 void Entity::render(sf::RenderTarget& target)
 {
-	target.draw(this->sprite);
-
-	if (this->hitboxComponent)
-		this->hitboxComponent->render(target);
 }

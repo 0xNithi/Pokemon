@@ -20,7 +20,7 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 	this->setTexture(texture_sheet);
 	this->setPosition(x, y);
 
-	this->createHitboxComponent(this->sprite, 4.f, 50.f, 24.f, 14.f);
+	this->createHitboxComponent(this->sprite, 8.f, 50.f, 16.f, 14.f);
 	this->createMovementComponent(300.f, 15.f, 10.f);
 	this->createAnimationComponent(texture_sheet);
 
@@ -37,10 +37,8 @@ Player::~Player()
 
 // Functions
 
-void Player::update(const float& dt)
+void Player::updateAnimation(const float& dt)
 {
-	this->movementComponent->update(dt);
-
 	if (this->movementComponent->getState(IDLE))
 		this->animationComponent->play("IDLE", dt);
 	else if (this->movementComponent->getState(MOVING_UP))
@@ -51,6 +49,20 @@ void Player::update(const float& dt)
 		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
 	else if (this->movementComponent->getState(MOVING_RIGHT))
 		this->animationComponent->play("WALK_RIGHT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
+}
+
+void Player::update(const float& dt)
+{
+	this->movementComponent->update(dt);
+
+	this->updateAnimation(dt);
 
 	this->hitboxComponent->update();
+}
+
+void Player::render(sf::RenderTarget& target)
+{
+	target.draw(this->sprite);
+
+	this->hitboxComponent->render(target);
 }

@@ -11,7 +11,7 @@ void Game::initVariables()
 
 	this->dt = 0.f;
 
-	this->gridSize = 16.f;
+	this->gridSize = 24.f;
 }
 
 void Game::initGraphicsSettings()
@@ -130,7 +130,7 @@ void Game::update()
 {
 	this->updateSFMLEvents();
 
-	if (!this->states.empty())
+	if (!this->states.empty() && this->window->hasFocus())
 	{
 		this->states.top()->update(this->dt);
 

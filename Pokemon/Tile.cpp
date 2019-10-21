@@ -25,7 +25,18 @@ Tile::~Tile()
 {
 }
 
-// Functions
+// Accessors
+
+const bool& Tile::getCollision() const
+{
+	return this->collision;
+}
+
+
+const sf::Vector2f& Tile::getPosition() const
+{
+	return this->shape.getPosition();
+}
 
 const std::string Tile::getAsString() const
 {
@@ -35,6 +46,8 @@ const std::string Tile::getAsString() const
 
 	return ss.str();
 }
+
+// Functions
 
 void Tile::update()
 {
