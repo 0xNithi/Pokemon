@@ -174,7 +174,7 @@ void GameState::update(const float& dt)
 		this->updatePlayerInput(dt);
 
 		this->player->update(dt);
-		this->player->updateSound(dt);
+		this->player->updateSoundEffect(dt);
 
 		this->updateTileMap(dt);
 	}

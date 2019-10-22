@@ -4,6 +4,7 @@
 #include "HitboxComponent.h"
 #include "MovementComponent.h"
 #include "AnimationComponent.h"
+#include "SoundEffectComponent.h"
 
 class Entity
 {
@@ -18,6 +19,7 @@ protected:
 	HitboxComponent* hitboxComponent;
 	MovementComponent* movementComponent;
 	AnimationComponent* animationComponent;
+	SoundEffectComponent* soundeffectComponent;
 
 public:
 
@@ -30,6 +32,7 @@ public:
 	void createHitboxComponent(sf::Sprite& sprite, float offset_x, float offset_y, float width, float height);
 	void createMovementComponent(const float maxVelocity, const float acceleration, const float decelerarion);
 	void createAnimationComponent(sf::Texture& texture_sheet);
+	void createSoundEffectComponent();
 
 	// Accessors
 
