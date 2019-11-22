@@ -4,7 +4,14 @@
 #include "HitboxComponent.h"
 #include "MovementComponent.h"
 #include "AnimationComponent.h"
+#include "PokemonAttributeComponent.h"
 #include "SoundEffectComponent.h"
+
+class HitboxComponent;
+class MovementComponent;
+class AnimationComponent;
+class PokemonAttributeComponent;
+class SoundEffectComponent;
 
 class Entity
 {
@@ -14,11 +21,13 @@ private:
 
 protected:
 
+	sf::Sprite icon;
 	sf::Sprite sprite;
 
 	HitboxComponent* hitboxComponent;
 	MovementComponent* movementComponent;
 	AnimationComponent* animationComponent;
+	PokemonAttributeComponent* pokemonAttributeComponent;
 	SoundEffectComponent* soundeffectComponent;
 
 public:
@@ -28,21 +37,24 @@ public:
 
 	// Component functions
 
-	void setTexture(sf::Texture& texture);
+	void setTexture(sf::Sprite& sprite, sf::Texture& texture);
 	void createHitboxComponent(sf::Sprite& sprite, float offset_x, float offset_y, float width, float height);
 	void createMovementComponent(const float maxVelocity, const float acceleration, const float decelerarion);
 	void createAnimationComponent(sf::Texture& texture_sheet);
+	void createPokemonAttributeComponent(unsigned id, unsigned level);
 	void createSoundEffectComponent();
 
 	// Accessors
 
+	virtual sf::Sprite& getSprite();
 	virtual const sf::Vector2f& getPosition() const;
-	virtual const sf::Vector2u getGridPosition(const unsigned gridSizeU) const;
+	virtual const sf::Vector2i getGridPosition(const int gridSizeI) const;
 	virtual const sf::FloatRect getGlobalBounds() const;
+	virtual const sf::FloatRect getNextPositionBounds(const float& dt) const;
 
 	// Modifiers
 
-	virtual void setPosition(const float x, const float y);
+	virtual void setPosition(sf::Sprite& sprite, const float x, const float y);
 
 	// Functions
 

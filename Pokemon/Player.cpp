@@ -5,24 +5,16 @@
 
 void Player::initVariables()
 {
+	this->coins = 0;
 }
 
-void Player::initComponents()
+void Player::initComponents(float x, float y, sf::Texture& texture_sheet)
 {
-}
-
-// Constructors / Destructors
-
-Player::Player(float x, float y, sf::Texture& texture_sheet)
-{
-	this->initVariables();
-	//this->initSoundEffects();
-
-	this->setTexture(texture_sheet);
-	this->setPosition(x, y);
+	this->setTexture(this->sprite, texture_sheet);
+	this->setPosition(this->sprite, x, y);
 
 	this->createHitboxComponent(this->sprite, 8.f, 50.f, 16.f, 14.f);
-	this->createMovementComponent(300.f, 15.f, 10.f);
+	this->createMovementComponent(300.f, 1500.f, 1000.f);
 	this->createAnimationComponent(texture_sheet);
 	this->createSoundEffectComponent();
 
@@ -33,6 +25,15 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 	this->animationComponent->addAnimation("IDLE", 10.f, 0, 0, 0, 0, 32, 64);
 
 	this->soundeffectComponent->addSoundEffect("WALKING", 15.f, "Resources/Audios/Effects/walk.ogg");
+	this->soundeffectComponent->addSoundEffect("HEALING", 15.f, "Resources/Audios/Effects/healing.ogg");
+}
+
+// Constructors / Destructors
+
+Player::Player(float x, float y, sf::Texture& texture_sheet)
+{
+	this->initVariables();
+	this->initComponents(x, y, texture_sheet);
 }
 
 Player::~Player()
@@ -40,6 +41,21 @@ Player::~Player()
 }
 
 // Functions
+
+const unsigned long& Player::getCoins() const
+{
+	return this->coins;
+}
+
+void Player::setCoins(int value)
+{
+	this->coins += value;
+}
+
+void Player::playHeal()
+{
+	this->soundeffectComponent->play("HEALING");
+}
 
 void Player::updateAnimation(const float& dt)
 {
@@ -53,7 +69,6 @@ void Player::updateAnimation(const float& dt)
 		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
 	else if (this->movementComponent->getState(MOVING_RIGHT))
 		this->animationComponent->play("WALK_RIGHT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
-
 }
 
 void Player::updateSoundEffect(const float& dt)
@@ -70,6 +85,8 @@ void Player::update(const float& dt)
 
 	this->updateAnimation(dt);
 
+	this->updateSoundEffect(dt);
+
 	this->hitboxComponent->update();
 }
 
@@ -77,5 +94,5 @@ void Player::render(sf::RenderTarget& target)
 {
 	target.draw(this->sprite);
 
-	this->hitboxComponent->render(target);
+	//this->hitboxComponent->render(target);
 }

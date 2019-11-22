@@ -1,6 +1,8 @@
 #ifndef GUI_H
 #define GUI_H
 
+#include "SoundEffectComponent.h"
+
 enum button_states { BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE };
 
 namespace gui
@@ -11,6 +13,8 @@ namespace gui
 
 		short unsigned buttonState;
 		short unsigned id;
+
+		bool isPlay;
 
 		sf::RectangleShape shape;
 		sf::Font* font;
@@ -28,13 +32,15 @@ namespace gui
 		sf::Color outlineHoverColor;
 		sf::Color outlineActiveColor;
 
+		SoundEffectComponent* soundeffectComponent;
+
 	public:
 		Button(float x, float y, float width, float height, sf::Font* font, std::string text, unsigned charractesr_size, sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color, sf::Color idle_color, sf::Color hover_color, sf::Color active_color, sf::Color outline_idle_color = sf::Color::Transparent, sf::Color outline_hover_color = sf::Color::Transparent, sf::Color outline_active_color = sf::Color::Transparent, short unsigned id = 0);
 		~Button();
 
 		// Accessors
 
-		const bool isPressed() const;
+		const bool isPressed();
 		const std::string getText() const;
 		const short unsigned& getId() const;
 
@@ -45,6 +51,7 @@ namespace gui
 
 		// Functions
 
+		void createSoundEffectComponent();
 		void update(const sf::Vector2i& mousePosWindow);
 		void render(sf::RenderTarget& target);
 	};

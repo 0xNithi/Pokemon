@@ -9,21 +9,22 @@ void EditorState::initVariables()
 	this->textureRect = sf::IntRect(0, 0, static_cast<int>(this->stateData->gridSize), static_cast<int>(this->stateData->gridSize));
 	this->collision = false;
 	this->type = TileTypes::DEFAULT;
-	this->cameraSpeed = 100.f;
+	this->cameraSpeed = 1000.f;
+	this->layer = 0;
 }
 
 void EditorState::initView()
 {
 	this->view.setSize(
 		sf::Vector2f(
-			this->stateData->gfxSettings->resolution.width,
-			this->stateData->gfxSettings->resolution.height
+			static_cast<float>(this->stateData->gfxSettings->resolution.width),
+			static_cast<float>(this->stateData->gfxSettings->resolution.height)
 		)
 	);
 
 	this->view.setCenter(
-		this->stateData->gfxSettings->resolution.width / 2.f, 
-		this->stateData->gfxSettings->resolution.height / 2.f
+		static_cast<float>(this->stateData->gfxSettings->resolution.width) / 2.f,
+		static_cast<float>(this->stateData->gfxSettings->resolution.height) / 2.f
 	);
 }
 
@@ -69,9 +70,9 @@ void EditorState::initPauseMenu()
 {
 	this->pmenu = new PauseMenu(*this->window, this->font);
 
-	this->pmenu->addButton("SAVE", 600.f, "Save");
-	this->pmenu->addButton("LOAD", 700.f, "Load");
-	this->pmenu->addButton("QUIT", 800.f, "Quit");
+	this->pmenu->addButton("SAVE", 400.f, "Save");
+	this->pmenu->addButton("LOAD", 500.f, "Load");
+	this->pmenu->addButton("QUIT", 600.f, "Quit");
 }
 
 void EditorState::initButton()
@@ -95,7 +96,7 @@ void EditorState::initGui()
 	this->selectorRect.setTextureRect(this->textureRect);
 
 	this->textureSelector = new gui::TextureSelector(
-		20.f, 20.f, 792.f, 1200.f, 
+		20.f, 20.f, 792.f, 720.f,
 		this->stateData->gridSize, 
 		this->tileMap->getTileSheet(),
 		this->font, "TS"
@@ -104,7 +105,7 @@ void EditorState::initGui()
 
 void EditorState::initTileMap()
 {
-	this->tileMap = new TileMap(this->stateData->gridSize, 10, 10, "Resources/Images/Tiles/tilesheet.png");
+	this->tileMap = new TileMap(this->stateData->gridSize, 200, 200, "Resources/Images/Tiles/tilesheet.png");
 }
 
 EditorState::EditorState(StateData* state_data)
@@ -243,7 +244,8 @@ void EditorState::updateGui(const float& dt)
 		"\n" << this->mousePosGrid.x << " " << this->mousePosGrid.y <<
 		"\n" << this->textureRect.left << " " << this->textureRect.top <<
 		"\n" << "Collision: " << this->collision <<
-		"\n" << "Type: " << this->type;
+		"\n" << "Type: " << this->type <<
+		"\n" << "Tiles: " << this->tileMap->getLayerSize(this->mousePosGrid.x, this->mousePosGrid.y, this->layer);
 
 	this->cursorText.setString(ss.str());
 }
@@ -309,7 +311,8 @@ void EditorState::render(sf::RenderTarget* target)
 		target = this->window;
 
 	target->setView(this->view);
-	this->tileMap->render(*target);
+	this->tileMap->render(*target, this->mousePosGrid);
+	this->tileMap->renderDeferred(*target);
 
 	target->setView(this->window->getDefaultView());
 	this->renderButtons(*target);

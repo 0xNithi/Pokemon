@@ -6,6 +6,8 @@ gui::Button::Button(float x, float y, float width, float height, sf::Font* font,
 	this->buttonState = BTN_IDLE;
 	this->id = id;
 
+	this->isPlay = false;
+
 	this->shape.setPosition(sf::Vector2f(x, y));
 	this->shape.setSize(sf::Vector2f(width, height));
 	this->shape.setFillColor(idle_color);
@@ -33,18 +35,26 @@ gui::Button::Button(float x, float y, float width, float height, sf::Font* font,
 	this->outlineIdleColor = outline_idle_color;
 	this->outlineHoverColor = outline_hover_color;
 	this->outlineActiveColor = outline_active_color;
+
+	this->createSoundEffectComponent();
+	this->soundeffectComponent->addSoundEffect("BUTTON_HOVER", NULL, "Resources/Audios/Effects/button_hover.ogg");
+	this->soundeffectComponent->addSoundEffect("BUTTON_ACITVE", NULL, "Resources/Audios/Effects/button_active.ogg");
 }
 
 gui::Button::~Button()
 {
+	delete this->soundeffectComponent;
 }
 
 // Accessors
 
-const bool gui::Button::isPressed() const
+const bool gui::Button::isPressed()
 {
 	if (this->buttonState == BTN_ACTIVE)
+	{
+		this->buttonState = BTN_IDLE;
 		return true;
+	}
 	return false;
 }
 
@@ -72,6 +82,11 @@ void gui::Button::setId(const short unsigned id)
 
 // Functions
 
+void gui::Button::createSoundEffectComponent()
+{
+	this->soundeffectComponent = new SoundEffectComponent();
+}
+
 void gui::Button::update(const sf::Vector2i& mousePosWindow)
 {
 	// Update the booleans for hover and pressed
@@ -86,17 +101,26 @@ void gui::Button::update(const sf::Vector2i& mousePosWindow)
 	{
 		this->buttonState = BTN_HOVER;
 
+		if (!this->isPlay)
+		{
+			this->soundeffectComponent->play("BUTTON_HOVER");
+			this->isPlay = true;
+		}
+
 		// Pressed
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			this->buttonState = BTN_ACTIVE;
+			this->soundeffectComponent->play("BUTTON_ACITVE");
 		}
 	}
 
 	switch (this->buttonState)
 	{
 	case BTN_IDLE:
+		this->isPlay = false;
+
 		this->shape.setFillColor(this->idleColor);
 		this->text.setFillColor(this->textIdleColor);
 		this->shape.setOutlineColor(this->outlineIdleColor);
@@ -139,7 +163,7 @@ gui::DropDownList::DropDownList(float x, float y, float width, float height, sf:
 		sf::Color(2, 25, 138, 200), sf::Color(2, 25, 138, 255), sf::Color(2, 25, 138, 50)
 	);
 
-	for (size_t i = 0;i < nrOfElement;i++)
+	for (unsigned i = 0;i < nrOfElement;i++)
 	{
 		this->list.push_back(
 			new gui::Button(
@@ -254,11 +278,11 @@ gui::TextureSelector::TextureSelector(float x, float y, float width, float heigh
 
 	if (this->sheet.getGlobalBounds().width > this->bounds.getGlobalBounds().width)
 	{
-		this->sheet.setTextureRect(sf::IntRect(0, 0, this->bounds.getGlobalBounds().width, this->sheet.getGlobalBounds().width));
+		this->sheet.setTextureRect(sf::IntRect(0, 0, static_cast<int>(this->bounds.getGlobalBounds().width), static_cast<int>(this->sheet.getGlobalBounds().width)));
 	}
 	if (this->sheet.getGlobalBounds().height > this->bounds.getGlobalBounds().height)
 	{
-		this->sheet.setTextureRect(sf::IntRect(0, 0, this->bounds.getGlobalBounds().height, this->sheet.getGlobalBounds().height));
+		this->sheet.setTextureRect(sf::IntRect(0, 0, static_cast<int>(this->bounds.getGlobalBounds().height), static_cast<int>(this->sheet.getGlobalBounds().height)));
 	}
 
 	this->selector.setPosition(x + offset, y);

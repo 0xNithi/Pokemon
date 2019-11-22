@@ -2,9 +2,13 @@
 #define STATE_H
 
 #include "Player.h"
+#include "Pokemon.h"
+#include "Npc.h"
 #include "GraphicsSettings.h"
 
 class Player;
+class Pokemon;
+class Npc;
 class GraphicsSettings;
 class State;
 
@@ -24,14 +28,16 @@ public:
 
 	sf::Music music;
 
+	sf::Event* events;
+
 	// Functions
 
-	void setMusic(std::string file = "Resources/Audios/Music/mainmenustate.ogg")
+	void setMusic(std::string file)
 	{
 		if (!this->music.openFromFile(file))
 			throw "ERROR::STATE::FAILED_TO_LOAD_MUSIC";
 
-		this->music.setVolume(10.f);
+		this->music.setVolume(30.f);
 		this->music.setLoop(1);
 		this->music.play();
 	}
@@ -58,7 +64,7 @@ protected:
 	sf::Vector2i mousePosScreen;
 	sf::Vector2i mousePosWindow;
 	sf::Vector2f mousePosView;
-	sf::Vector2u mousePosGrid;
+	sf::Vector2i mousePosGrid;
 
 	// Resources
 

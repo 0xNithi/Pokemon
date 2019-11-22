@@ -22,15 +22,22 @@ private:
 			if (!this->buffer.loadFromFile(path))
 				throw "ERROR::PLAYER::FAILED_TO_LOAD_SOUND_EFFECTS";
 
-			this->sound.setVolume(70.f);
+			this->sound.setVolume(100.f);
 			this->sound.setBuffer(buffer);
 		}
 
 		// Functions
 
+		void play()
+		{
+			this->sound.play();
+		}
+
 		void play(const float& dt, float mod_percent)
 		{
 			// Update timer
+
+			mod_percent = abs(mod_percent);
 
 			if (mod_percent < 0.5f)
 				mod_percent = 0.5f;
@@ -59,6 +66,7 @@ public:
 
 	void addSoundEffect(const std::string key, float sound_effect_timer, std::string path);
 
+	void play(const std::string key);
 	void play(const std::string key, const float& dt, const float& modifier, const float& modifier_max);
 };
 

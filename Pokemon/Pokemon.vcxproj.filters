@@ -22,14 +22,17 @@
     <Filter Include="Components">
       <UniqueIdentifier>{33f58704-3e03-47de-8487-8f688c993a49}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUI">
-      <UniqueIdentifier>{a860851b-ea5a-41bc-b139-4890068c2584}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Map">
       <UniqueIdentifier>{8b6d758c-7755-4f3d-85de-03adb00d40e8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Tile">
       <UniqueIdentifier>{813a436c-3bee-4baa-bb06-4f3f622aeaa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Team">
+      <UniqueIdentifier>{ca2ce685-0707-489f-a34a-316e1dda0b08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{a860851b-ea5a-41bc-b139-4890068c2584}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -44,9 +47,6 @@
     </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>States</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="MainMenuState.cpp">
       <Filter>States</Filter>
@@ -72,23 +72,56 @@
     <ClCompile Include="SettingsState.cpp">
       <Filter>States</Filter>
     </ClCompile>
-    <ClCompile Include="Gui.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="TileMap.cpp">
       <Filter>Map</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>Tile</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="GraphicsSettings.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="SoundEffectComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Team.cpp">
+      <Filter>Entities\Team</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGUI.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamGUI.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PokemonAttributeComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Pokemon.cpp">
+      <Filter>Entities\Team</Filter>
+    </ClCompile>
+    <ClCompile Include="InputNameMenu.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleMenu.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Npc.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogBoxGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoresState.cpp">
+      <Filter>States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +140,6 @@
     <ClInclude Include="MainMenuState.h">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
     <ClInclude Include="MovementComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -122,14 +152,8 @@
     <ClInclude Include="HitboxComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="PauseMenu.h">
-      <Filter>GUI</Filter>
-    </ClInclude>
     <ClInclude Include="SettingsState.h">
       <Filter>States</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui.h">
-      <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="TileMap.h">
       <Filter>Map</Filter>
@@ -145,6 +169,45 @@
     </ClInclude>
     <ClInclude Include="SoundEffectComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Team.h">
+      <Filter>Entities\Team</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerGUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Pokemon.h">
+      <Filter>Entities\Team</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamGUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PokemonAttributeComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="InputNameMenu.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleMenu.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Npc.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogBoxGUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoresState.h">
+      <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

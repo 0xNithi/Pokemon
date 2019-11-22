@@ -132,6 +132,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationComponent.cpp" />
+    <ClCompile Include="BattleMenu.cpp" />
+    <ClCompile Include="DialogBoxGUI.cpp" />
+    <ClCompile Include="InputNameMenu.cpp" />
+    <ClCompile Include="Npc.cpp" />
+    <ClCompile Include="PokemonAttributeComponent.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="EditorState.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -140,7 +145,11 @@
     <ClCompile Include="HitboxComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="PlayerGUI.cpp" />
+    <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
+    <ClCompile Include="ScoresState.cpp" />
+    <ClCompile Include="Team.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SettingsState.cpp" />
@@ -151,11 +160,17 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TeamGUI.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationComponent.h" />
+    <ClInclude Include="BattleMenu.h" />
+    <ClInclude Include="DialogBoxGUI.h" />
+    <ClInclude Include="InputNameMenu.h" />
+    <ClInclude Include="Npc.h" />
+    <ClInclude Include="PokemonAttributeComponent.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="EditorState.h" />
     <ClInclude Include="Entity.h" />
@@ -164,13 +179,18 @@
     <ClInclude Include="GraphicsSettings.h" />
     <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="PlayerGUI.h" />
+    <ClInclude Include="Pokemon.h" />
     <ClInclude Include="MovementComponent.h" />
+    <ClInclude Include="ScoresState.h" />
+    <ClInclude Include="Team.h" />
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SettingsState.h" />
     <ClInclude Include="SoundEffectComponent.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TeamGUI.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileMap.h" />
   </ItemGroup>

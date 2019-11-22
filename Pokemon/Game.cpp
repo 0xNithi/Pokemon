@@ -72,6 +72,7 @@ void Game::initStateDate()
 	this->stateData.supportedKeys = &this->supportedKeys;
 	this->stateData.states = &this->states;
 	this->stateData.gridSize = this->gridSize;
+	this->stateData.events = &this->sfEvent;
 }
 
 void Game::initStates()
@@ -136,6 +137,7 @@ void Game::update()
 
 		if (this->states.top()->getQuit())
 		{
+			sf::sleep(sf::seconds(0.2f));
 			this->states.top()->endState();
 			delete this->states.top();
 			this->states.pop();

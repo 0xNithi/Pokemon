@@ -65,6 +65,8 @@ private:
 		{
 			// Update timer
 
+			mod_percent = abs(mod_percent);
+
 			if (mod_percent < 0.5f)
 				mod_percent = 0.5f;
 

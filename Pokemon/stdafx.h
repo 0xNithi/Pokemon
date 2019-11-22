@@ -6,7 +6,9 @@
 
 #include <algorithm>
 #include <deque>
+#include <iomanip>
 #include <iostream>
+#include <locale>
 #include <map>
 #include <memory>
 #include <set>

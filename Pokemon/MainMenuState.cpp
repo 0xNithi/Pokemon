@@ -5,7 +5,7 @@
 
 void MainMenuState::initVariables()
 {
-	this->stateData->setMusic();
+	this->stateData->setMusic("Resources/Audios/Music/mainmenustate.ogg");
 }
 
 void MainMenuState::initBackground()
@@ -53,29 +53,31 @@ void MainMenuState::initKeybinds()
 
 void MainMenuState::initButton()
 {
+	float y = 350;
+
 	this->buttons["GAME_STATE"] = new gui::Button(
-		this->window->getSize().x / 2.f - 200.f, 480.f, 400.f, 75.f,
-		&this->font, "New Game", 50,
+		this->window->getSize().x / 2.f - 200.f, y, 400.f, 75.f,
+		&this->font, "Start", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(40, 40, 40, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(255, 167, 28, 200), sf::Color(255, 167, 28, 255), sf::Color(255, 167, 28, 200)
 	);
 
-	this->buttons["SETTINGS_STATE"] = new gui::Button(
-		this->window->getSize().x / 2.f - 200.f, 580.f, 400.f, 75.f,
-		&this->font, "Settings", 50,
+	this->buttons["SCORE_STATE"] = new gui::Button(
+		this->window->getSize().x / 2.f - 200.f, y + 100.f, 400.f, 75.f,
+		&this->font, "Score", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(40, 40, 40, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(255, 167, 28, 200), sf::Color(255, 167, 28, 255), sf::Color(255, 167, 28, 200)
 	);
 
 	this->buttons["EDITOR_STATE"] = new gui::Button(
-		this->window->getSize().x / 2.f - 200.f, 680.f, 400.f, 75.f,
+		this->window->getSize().x / 2.f - 200.f, y + 200.f, 400.f, 75.f,
 		&this->font, "Editor", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(40, 40, 40, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(255, 167, 28, 200), sf::Color(255, 167, 28, 255), sf::Color(255, 167, 28, 200)
 	);
 
 	this->buttons["EXIT_STATE"] = new gui::Button(
-		this->window->getSize().x / 2.f - 200.f, 880.f, 400.f, 75.f,
+		this->window->getSize().x / 2.f - 200.f, y + 300.f, 400.f, 75.f,
 		&this->font, "Quit", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(40, 40, 40, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(255, 167, 28, 200), sf::Color(255, 167, 28, 255), sf::Color(255, 167, 28, 200)
@@ -121,11 +123,11 @@ void MainMenuState::updateButtons()
 		this->stateData->setMusic("Resources/Audios/Music/gamestate.ogg");
 	}
 
-	// Settings
+	// Scores
 
-	if (this->buttons["SETTINGS_STATE"]->isPressed())
+	if (this->buttons["SCORE_STATE"]->isPressed())
 	{
-		this->states->push(new SettingsState(this->stateData));
+		this->states->push(new ScoresState(this->stateData));
 	}
 
 	// Editor

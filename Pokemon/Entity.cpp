@@ -18,11 +18,13 @@ Entity::~Entity()
 	delete this->hitboxComponent;
 	delete this->movementComponent;
 	delete this->animationComponent;
+	delete this->pokemonAttributeComponent;
+	delete this->soundeffectComponent;
 }
 
 // Component functions
 
-void Entity::setTexture(sf::Texture& texture)
+void Entity::setTexture(sf::Sprite& sprite, sf::Texture& texture)
 {
 	this->sprite.setTexture(texture);
 }
@@ -42,9 +44,19 @@ void Entity::createAnimationComponent(sf::Texture& texture_sheet)
 	this->animationComponent = new AnimationComponent(this->sprite, texture_sheet);
 }
 
+void Entity::createPokemonAttributeComponent(unsigned id, unsigned level)
+{
+	this->pokemonAttributeComponent = new PokemonAttributeComponent(id, level);
+}
+
 void Entity::createSoundEffectComponent()
 {
 	this->soundeffectComponent = new SoundEffectComponent();
+}
+
+sf::Sprite& Entity::getSprite()
+{
+	return this->sprite;
 }
 
 const sf::Vector2f& Entity::getPosition() const
@@ -55,17 +67,17 @@ const sf::Vector2f& Entity::getPosition() const
 	return this->sprite.getPosition();
 }
 
-const sf::Vector2u Entity::getGridPosition(const unsigned gridSizeU) const
+const sf::Vector2i Entity::getGridPosition(const int gridSizeI) const
 {
 	if (this->hitboxComponent)
-		return sf::Vector2u(
-			static_cast<unsigned>(this->hitboxComponent->getPosition().x) / gridSizeU, 
-			static_cast<unsigned>(this->hitboxComponent->getPosition().y) / gridSizeU
+		return sf::Vector2i(
+			static_cast<int>(this->hitboxComponent->getPosition().x) / gridSizeI,
+			static_cast<int>(this->hitboxComponent->getPosition().y) / gridSizeI
 		);
 
-	return sf::Vector2u(
-		static_cast<unsigned>(this->sprite.getPosition().x) / gridSizeU,
-		static_cast<unsigned>(this->sprite.getPosition().y) / gridSizeU
+	return sf::Vector2i(
+		static_cast<int>(this->sprite.getPosition().x) / gridSizeI,
+		static_cast<int>(this->sprite.getPosition().y) / gridSizeI
 	);
 }
 
@@ -77,14 +89,22 @@ const sf::FloatRect Entity::getGlobalBounds() const
 	return this->sprite.getGlobalBounds();
 }
 
+const sf::FloatRect Entity::getNextPositionBounds(const float& dt) const
+{
+	if (this->hitboxComponent && this->movementComponent)
+		return this->hitboxComponent->getNextPosition(this->movementComponent->getVelocity() * dt);
+
+	return sf::FloatRect(-1.f, -1.f, -1.f, -1.f);
+}
+
 // Functions
 
-void Entity::setPosition(const float x, const float y)
+void Entity::setPosition(sf::Sprite& sprite, const float x, const float y)
 {
 	if (this->hitboxComponent)
 		this->hitboxComponent->setPosition(x, y);
 	else
-		this->sprite.setPosition(x, y);
+		sprite.setPosition(x, y);
 }
 
 void Entity::move(const float dir_x, const float dir_y, const float& dt)

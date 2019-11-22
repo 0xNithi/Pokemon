@@ -89,9 +89,9 @@ void MovementComponent::move(const float dir_x, const float dir_y, const float& 
 {
 	// Accelrating a spritee until it reaches the velocity.
 
-	this->velocity.x += this->acceleration * dir_x;
+	this->velocity.x += this->acceleration * dir_x * dt;
 
-	this->velocity.y += this->acceleration * dir_y;
+	this->velocity.y += this->acceleration * dir_y * dt;
 }
 
 void MovementComponent::update(const float& dt)
@@ -108,7 +108,7 @@ void MovementComponent::update(const float& dt)
 
 		// Deceleration
 
-		this->velocity.x -= deceleration;
+		this->velocity.x -= deceleration * dt;
 		if (this->velocity.x < 0.f)
 			this->velocity.x = 0.f;
 	}
@@ -121,7 +121,7 @@ void MovementComponent::update(const float& dt)
 
 		// Deceleration
 
-		this->velocity.x += deceleration;
+		this->velocity.x += deceleration * dt;
 		if (this->velocity.x > 0.f)
 			this->velocity.x = 0.f;
 	}
@@ -135,7 +135,7 @@ void MovementComponent::update(const float& dt)
 
 		// Deceleration
 
-		this->velocity.y -= deceleration;
+		this->velocity.y -= deceleration * dt;
 		if (this->velocity.y < 0.f)
 			this->velocity.y = 0.f;
 	}
@@ -148,7 +148,7 @@ void MovementComponent::update(const float& dt)
 
 		// Deceleration
 
-		this->velocity.y += deceleration;
+		this->velocity.y += deceleration * dt;
 		if (this->velocity.y > 0.f)
 			this->velocity.y = 0.f;
 	}

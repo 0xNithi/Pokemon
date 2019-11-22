@@ -3,14 +3,13 @@
 
 #include "State.h"
 #include "PauseMenu.h"
+#include "InputNameMenu.h"
+#include "BattleMenu.h"
 #include "TileMap.h"
-
-class PauseMenu;
-class Player;
-class TileMap;
-class sf::View;
-class sf::Font;
-class sf::RenderTexture;
+#include "PlayerGUI.h"
+#include "Team.h"
+#include "TeamGUI.h"
+#include "DialogBoxGUI.h"
 
 class GameState :
 	public State
@@ -23,11 +22,48 @@ private:
 
 	sf::Font font;
 	PauseMenu* pmenu;
+	InputNameMenu* imenu;
+	BattleMenu* bmenu;
 
 	Player* player;
+	PlayerGUI* playerGUI;
+	Team* team;
+	TeamGUI* teamGUI;
+
+	DialogBoxGUI* dialogBoxGUI;
 	sf::Texture texture;
 
 	TileMap* tileMap;
+
+	std::map<std::string, Pokemon*> pokemons;
+
+	Npc* nurse;
+	Npc* doctor;
+	Npc* gymLeader;
+
+	sf::RectangleShape CreditScreen;
+	sf::Text CreditText;
+
+	std::string trainerName;
+
+	sf::Clock myClock;
+
+	bool isInputName = true;
+
+	bool isBattle = false;
+	bool gymBattle = false;
+	bool playerLose = false;
+	bool healUsed = false;
+	bool ultimateUsed = false;
+
+	unsigned gymCount = 0;
+
+	unsigned quest;
+	unsigned questProgress;
+	bool isQuest = false;
+	bool isRewarded;
+
+	bool isCheatMode = false;
 
 	// Functions
 
@@ -37,7 +73,12 @@ private:
 	void initFonts();
 	void initTexture();
 	void initPauseMenu();
+	void initInputNameMenu();
 	void initPlayer();
+	void initPlayerGUI();
+	void initNpc();
+	void initTeam();
+	void initTeamGUI();
 	void initTileMap();
 
 public:
@@ -49,8 +90,12 @@ public:
 	void updateView(const float& dt);
 	void updateInput(const float& dt);
 	void updatePlayerInput(const float& dt);
+	void updateTeamBuddy(const float& dt);
 	void updatePauseMenuButtons();
+	void updateBattleMenuButtons();
+	void updateInputNameMenuButtons();
 	void updateTileMap(const float& dt);
+	void updateDialog();
 	void update(const float& dt);
 	void render(sf::RenderTarget* target = NULL);
 };

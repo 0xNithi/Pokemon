@@ -18,6 +18,11 @@ void SoundEffectComponent::addSoundEffect(const std::string key, float sound_eff
 	this->soundeffects[key] = new SoundEffect(sound_effect_timer, path);
 }
 
+void SoundEffectComponent::play(const std::string key)
+{
+	this->soundeffects[key]->play();
+}
+
 void SoundEffectComponent::play(const std::string key, const float& dt, const float& modifier, const float& modifier_max)
 {
 	this->soundeffects[key]->play(dt, (modifier / modifier_max));

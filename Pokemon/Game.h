@@ -34,7 +34,7 @@ private:
 
 public:
 
-	//Constructors/Destructors
+	// Constructors/Destructors
 
 	Game();
 	virtual ~Game();
