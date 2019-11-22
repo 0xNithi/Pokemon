@@ -756,7 +756,7 @@ void TileMap::render(sf::RenderTarget& target, const sf::Vector2i& gridPosition)
 				if (this->map[x][y][this->layer][k]->getCollision())
 				{
 					this->collisionBox.setPosition(this->map[x][y][this->layer][k]->getPosition());
-					target.draw(this->collisionBox);
+					//target.draw(this->collisionBox);
 				}
 			}
 		}
