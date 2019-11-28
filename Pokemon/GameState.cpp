@@ -129,8 +129,6 @@ void GameState::initTeam()
 	this->team->add(pokemons["Bulbasaur"], 0);
 	this->team->add(pokemons["Charmander"], 1);
 	this->team->add(pokemons["Squirtle"], 2);
-
-	pokemons["Pokemon1"] = new Pokemon(rand() % 100 + 1, 1);
 }
 
 void GameState::initTeamGUI()
@@ -785,7 +783,7 @@ void GameState::update(const float& dt)
 
 					if (this->dialogBoxGUI->index > this->dialogBoxGUI->message.length())
 					{
-						if (this->dialogBoxGUI->myClock.getElapsedTime() >= sf::seconds(1))
+						if (this->dialogBoxGUI->myClock.getElapsedTime() >= sf::seconds(5))
 						{
 							delete this->dialogBoxGUI;
 							this->dialogBoxGUI = NULL;

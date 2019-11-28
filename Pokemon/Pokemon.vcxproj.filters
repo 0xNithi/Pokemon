@@ -117,11 +117,11 @@
     <ClCompile Include="Npc.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="DialogBoxGUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ScoresState.cpp">
       <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogBoxGUI.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
