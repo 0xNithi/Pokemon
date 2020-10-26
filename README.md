@@ -14,6 +14,7 @@ Game Development
 
 ### Tech
 
-* [C++]
-* [SFML]
-* [Visual Studio]
+-   [C]
+-   [C++]
+-   [SFML]
+-   [Visual Studio]
